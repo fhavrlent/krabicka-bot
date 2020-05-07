@@ -39,7 +39,7 @@ const getIsOnline = async () => {
       },
     },
   );
-  return data && data.stream && data.stream.stream_type === 'live';
+  return data && data.stream && typeof data.stream === 'string';
 };
 
 exports.setBot = setBot;
