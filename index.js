@@ -1,14 +1,9 @@
 const tmi = require('tmi.js');
 require('dotenv').config();
 
-const helpers = require('./helpers');
+const { onConnectedHandler, getBox, setBot: setBot } = require('./helpers');
 
-const {
-  BOT_USERNAME,
-  CHANNEL_NAME,
-
-  OAUTH_TOKEN,
-} = process.env;
+const { BOT_USERNAME, CHANNEL_NAME, OAUTH_TOKEN } = process.env;
 
 const opts = {
   identity: {
@@ -17,14 +12,15 @@ const opts = {
   },
   channels: [CHANNEL_NAME],
 };
+
 const client = new tmi.client(opts);
 
-client.on('connected', helpers.onConnectedHandler);
+client.on('connected', onConnectedHandler);
 
 client.on('logon', () => {
-  setTimeout(() => helpers.getKrabicka(client), 5000);
+  setTimeout(() => getBox(client), 5000);
 });
 
 client.connect();
 
-helpers.setSpammer(client);
+setBot(client);

@@ -5,24 +5,24 @@ const { CHANNEL_NAME, CLIENT_ID } = process.env;
 const getRandomInterval = () =>
   Math.floor(Math.random() * Math.floor(160)) * 1000;
 
-let krabickaCount = 0;
+let boxCount = 0;
 let randomInterval = getRandomInterval();
 
-const getKrabicka = async (client) => {
+const getBox = async (client) => {
   const isOnline = await getIsOnline();
   if (!isOnline) {
     console.log('Patriiot je offline');
-    krabickaCount = 0;
+    boxCount = 0;
   } else {
     client.say(CHANNEL_NAME, '!krabicka');
-    krabickaCount = +1;
-    console.log(`Krabicka count: ${krabickaCount}`);
+    boxCount = +1;
+    console.log(`Krabicka count: ${boxCount}`);
   }
 };
 
-const setSpammer = (client) =>
+const setBot = (client) =>
   setInterval(() => {
-    getKrabicka(client);
+    getBox(client);
     randomInterval = getRandomInterval();
   }, 60 * 100 * 1000 + randomInterval);
 
@@ -42,6 +42,6 @@ const getIsOnline = async () => {
   return data.data && data.data.length > 0;
 };
 
-exports.setSpammer = setSpammer;
-exports.getKrabicka = getKrabicka;
+exports.setBot = setBot;
+exports.getBox = getBox;
 exports.onConnectedHandler = onConnectedHandler;
