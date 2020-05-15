@@ -1,9 +1,10 @@
 const tmi = require('tmi.js');
 require('dotenv').config();
+const Agenda = require('agenda');
 
-const { onConnectedHandler, getBox, setBot: setBot } = require('./helpers');
+const { onConnectedHandler, getIsOnline } = require('./helpers');
 
-const { BOT_USERNAME, CHANNEL_NAME, OAUTH_TOKEN } = process.env;
+const { BOT_USERNAME, CHANNEL_NAME, OAUTH_TOKEN, MONGO } = process.env;
 
 const opts = {
   identity: {
@@ -17,10 +18,26 @@ const client = new tmi.client(opts);
 
 client.on('connected', onConnectedHandler);
 
-client.on('logon', () => {
-  setTimeout(() => getBox(client), 5000);
+const agenda = new Agenda({ db: { address: MONGO } });
+agenda.define;
+
+const getRandomTime = () => Math.random() * (240000 - 180000) + 180000;
+
+agenda.define('get krabicka', async (job, done) => {
+  const isOnline = await getIsOnline();
+  console.log(isOnline);
+  if (!isOnline) {
+    done();
+    return;
+  }
+  await client.connect();
+  setTimeout(() => {}, getRandomTime());
+  await client.say(CHANNEL_NAME, '!krabicka');
+  setTimeout(() => {}, 10000);
+  await client.disconnect();
+  done();
 });
 
-client.connect();
-
-setBot(client);
+(async function () {
+  await agenda.start();
+})();
