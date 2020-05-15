@@ -25,19 +25,16 @@ const getRandomTime = () => Math.random() * (240000 - 180000) + 180000;
 
 agenda.define('get krabicka', async (job, done) => {
   const isOnline = await getIsOnline();
-  console.log(isOnline);
-  if (!isOnline) {
-    done();
-    return;
-  }
+
   await client.connect();
-  setTimeout(() => {}, getRandomTime());
-  await client.say(CHANNEL_NAME, '!krabicka');
-  setTimeout(() => {}, 10000);
+  if (isOnline) {
+    setTimeout(() => {}, getRandomTime());
+    await client.say(CHANNEL_NAME, '!krabicka');
+    setTimeout(() => {}, 10000);
+  }
+
   await client.disconnect();
   done();
 });
 
-(async function () {
-  await agenda.start();
-})();
+agenda.start();
