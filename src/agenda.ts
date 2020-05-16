@@ -5,7 +5,6 @@ import config from './config';
 import logger from './logger';
 
 export default async (tmiClientInstance) => {
-  console.log(config.mongoDb);
   const agenda = new Agenda({ db: { address: config.mongoDb } });
 
   agenda.define('get krabicka', async (job, done) => {
@@ -17,11 +16,9 @@ export default async (tmiClientInstance) => {
         done();
         return;
       }
-      setTimeout(() => {
-        tmiClientInstance.say(config.channelName, '!krabicka');
-        logger.info('Krabicka acquired');
-        done();
-      }, 78000);
+      tmiClientInstance.say(config.channelName, '!krabicka');
+      logger.info('Krabicka acquired');
+      done();
     } catch (error) {
       logger.error(error);
       done(error);
