@@ -1,11 +1,7 @@
 import axios from 'axios';
 
 import logger from './logger';
-
-const { CLIENT_ID } = process.env;
-
-export const onConnectedHandler = (addr, port) =>
-  console.log(`* Connected to ${addr}:${port}`);
+import config from './config';
 
 export const getIsOnline = async () => {
   try {
@@ -13,7 +9,7 @@ export const getIsOnline = async () => {
       'https://api.twitch.tv/kraken/streams/36746721',
       {
         headers: {
-          'Client-ID': CLIENT_ID,
+          'Client-ID': config.clientId,
           Accept: 'Accept: application/vnd.twitchtv.v5+json',
         },
       },
