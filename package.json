@@ -4,19 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint"
+    "lint": "eslint",
+    "start": "nodemon",
+    "build": "tsc",
+    "postbuild": "cp package.json dist/package.json && cd dist && npm install --only=production"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/agenda": "^2.0.7",
+    "@types/tmi.js": "^1.4.0",
     "agenda": "^3.1.0",
-    "agendash": "^1.0.0",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4",
     "tmi.js": "^1.5.0",
-    "twitch-webhook": "^1.2.4"
+    "winston": "^3.2.1"
   },
   "devDependencies": {
-    "eslint": "^6.8.0"
+    "agendash": "^1.0.0",
+    "eslint": "^6.8.0",
+    "ts-node": "^8.10.1",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.2"
   }
 }
