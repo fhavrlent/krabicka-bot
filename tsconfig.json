@@ -5,7 +5,16 @@
     "target": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "noEmit": false,
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true
   },
-  "lib": ["es2015"]
+  "lib": ["es2017", "esnext.asynciterable"],
+  "target": "es2017",
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "tests"]
 }

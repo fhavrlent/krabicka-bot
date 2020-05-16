@@ -1,4 +1,4 @@
-import tmiClient from '../tmiClient';
+import tmiClient from './tmiClient';
 import agenda from './agenda';
 
 const startServer = async () => {

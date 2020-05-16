@@ -1,6 +1,6 @@
-import config from './src/config';
+import config from './config';
 import { client } from 'tmi.js';
-import logger from './src/logger';
+import logger from './logger';
 
 export default async () => {
   const tmiOptions = {
