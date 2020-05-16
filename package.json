@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint",
     "start": "nodemon",
+    "postbuild": "cp package.json dist/package.json && cd dist && npm install --only=production",
     "build": "tsc"
   },
   "author": "",
