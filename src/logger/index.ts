@@ -20,20 +20,22 @@ const logger = createLogger({
   ],
 });
 
-logger.add(
-  new Sentry({
-    sentry: {
-      dsn: config.sentryDsn,
-      environment: config.nodeEnv,
-    },
-    level: 'warn',
-  }),
-);
-
 if (config.nodeEnv !== 'production') {
   logger.add(
     new transports.Console({
       format: format.simple(),
+    }),
+  );
+}
+
+if (config.nodeEnv === 'production') {
+  logger.add(
+    new Sentry({
+      sentry: {
+        dsn: config.sentryDsn,
+        environment: config.nodeEnv,
+      },
+      level: 'warn',
     }),
   );
 }
