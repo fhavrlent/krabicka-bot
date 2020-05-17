@@ -1,8 +1,8 @@
 import Agenda from 'agenda';
 
-import { getIsOnline } from './helpers';
-import config from './config';
-import logger from './logger';
+import { getIsOnline } from '../helpers';
+import config from '../config';
+import logger from '../logger';
 
 export default (tmiClientInstance) => {
   const agenda = new Agenda({ db: { address: config.mongoDb } });

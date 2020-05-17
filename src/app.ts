@@ -7,8 +7,8 @@ const startServer = async () => {
     const tmiClientInstance = await tmiClient();
     const agendaInstance = await agenda(tmiClientInstance);
 
-    tmiClientInstance.connect();
-    agendaInstance.start();
+    await tmiClientInstance.connect();
+    await agendaInstance.start();
     logger.info('Server has started 🚀');
   } catch (error) {
     logger.error(error);
