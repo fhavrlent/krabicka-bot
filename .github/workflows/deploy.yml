@@ -1,16 +1,17 @@
-name: Deploy Production
+name: Deploy production
 
 on:
   push:
-    branches: [master]
+    branches:
+      - develop
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [8.x, 10.x, 12.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -18,11 +19,35 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm run test
-      - run: npm run build
+      - name: npm install and test
+        run: |
+          npm ci
+          npm test
         env:
           CI: true
+
+  pre-deploy:
+    needs: [test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clear the app dir
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/krabicka
+            pm2 stop krabickaBot
+            rm -rf !(ecosystem.config.js)
+
+  deploy:
+    needs: [pre-deploy]
+    runs-on: ubuntu-latest
+
+    steps:
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@v2.1.2
         env:
@@ -31,3 +56,18 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
           SOURCE: "dist/"
+
+  post-deploy:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Start the app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            pm2 start krabickaBot
