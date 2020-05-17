@@ -1,12 +1,12 @@
 {
-  "name": "twitch-krabicka-spam",
+  "name": "twitch-krabicka-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.ts",
   "scripts": {
     "lint": "eslint",
     "start": "nodemon",
-    "postbuild": "cp package.json dist/package.json && cd dist && npm install --only=production",
+    "postbuild": "cp package.json dist/package.json",
     "build": "tsc",
     "test": "jest",
     "test:coverage": "jest --collect-coverage"
