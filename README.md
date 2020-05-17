@@ -1,11 +1,13 @@
 
 # Krabicka bot 🤖
 
-
 ## Did I broke something? 🤦‍♂️
 
-![Deploy Production](https://github.com/fhavrlent/krabicka/workflows/Deploy%20Production/badge.svg)
+[![Codeship Status for fhavrlent/krabicka](https://app.codeship.com/projects/3b49cbd0-7a86-0138-8c59-4ab973632a01/status?branch=master)](https://app.codeship.com/projects/396669)
 
+## More badges
+
+![GitHub](https://img.shields.io/github/license/fhavrlent/krabicka) ![GitHub repo size](https://img.shields.io/github/repo-size/fhavrlent/krabicka) ![GitHub package.json version](https://img.shields.io/github/package-json/v/fhavrlent/krabicka)
 
 ## Project 📈
 
