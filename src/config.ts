@@ -10,6 +10,7 @@ const {
   CLIENT_SECRET,
   MONGO_DB,
   NODE_ENV,
+  SENTRY_DSN,
 } = process.env;
 
 export default {
@@ -20,4 +21,5 @@ export default {
   clientSecret: CLIENT_SECRET,
   mongoDb: MONGO_DB,
   nodeEnv: NODE_ENV,
+  sentryDsn: SENTRY_DSN,
 };

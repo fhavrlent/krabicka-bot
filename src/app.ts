@@ -1,12 +1,18 @@
 import tmiClient from './tmiClient';
 import agenda from './agenda';
+import logger from './logger';
 
 const startServer = async () => {
-  const tmiClientInstance = await tmiClient();
-  const agendaInstance = await agenda(tmiClientInstance);
+  try {
+    const tmiClientInstance = await tmiClient();
+    const agendaInstance = await agenda(tmiClientInstance);
 
-  tmiClientInstance.connect();
-  agendaInstance.start();
+    tmiClientInstance.connect();
+    agendaInstance.start();
+    logger.info('Server has started 🚀');
+  } catch (error) {
+    logger.error(error);
+  }
 };
 
 startServer();
