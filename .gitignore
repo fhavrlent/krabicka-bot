@@ -1,4 +1,6 @@
 .env*
+ecosystem.config.js
+
 node_modules/
 logs/
 dist/
