@@ -2,7 +2,7 @@ import config from './config';
 import { client } from 'tmi.js';
 import logger from './logger';
 
-export default async () => {
+export default () => {
   const tmiOptions = {
     identity: {
       username: config.botUsername,

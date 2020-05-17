@@ -1,4 +1,5 @@
 import { createLogger, format, transports } from 'winston';
+import Sentry from 'winston-transport-sentry-node';
 
 import config from './config';
 
@@ -11,11 +12,18 @@ const logFormat = printf(({ level, message, timestamp }) => {
 const logger = createLogger({
   level: 'info',
   format: combine(timestamp(), logFormat),
-  transports: [
-    new transports.File({ filename: 'error.log', level: 'error' }),
-    new transports.File({ filename: 'combined.log' }),
-  ],
+  transports: [new transports.File({ dirname: 'logs', filename: 'logs.log' })],
 });
+
+logger.add(
+  new Sentry({
+    sentry: {
+      dsn: config.sentryDsn,
+      environment: config.nodeEnv,
+    },
+    level: 'warn',
+  }),
+);
 
 if (config.nodeEnv !== 'production') {
   logger.add(

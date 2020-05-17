@@ -4,7 +4,7 @@ import { getIsOnline } from './helpers';
 import config from './config';
 import logger from './logger';
 
-export default async (tmiClientInstance) => {
+export default (tmiClientInstance) => {
   const agenda = new Agenda({ db: { address: config.mongoDb } });
 
   agenda.define('get krabicka', async (job, done) => {
@@ -17,7 +17,8 @@ export default async (tmiClientInstance) => {
         return;
       }
       tmiClientInstance.say(config.channelName, '!krabicka');
-      logger.info('Krabicka acquired');
+      //TODO: add check if we really got some krabicka
+      logger.info('Krabicka hopefully acquired');
       done();
     } catch (error) {
       logger.error(error);
