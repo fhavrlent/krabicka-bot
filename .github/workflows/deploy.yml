@@ -40,7 +40,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/krabicka
-            pm2 stop krabickaBot
             rm -rf !(ecosystem.config.js)
 
   deploy:
@@ -58,18 +57,3 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
           SOURCE: "dist/"
-
-  post-deploy:
-    needs: [deploy]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Start the app
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            pm2 start krabickaBot
