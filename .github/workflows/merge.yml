@@ -1,4 +1,4 @@
-name: Deploy Production
+name: Pul Request test and build check
 
 on:
   pull_request:
