@@ -21,4 +21,6 @@ Bot that, if channel is online, will ~~spam~~ type `!krabicka` in the chat so I 
 
 [TypeScript](https://www.typescriptlang.org/), because why not make my life ~~harder~~ better.
 
+[Sentry](https://sentry.io/), to log those pesky errors and warning.
+
 Deployed using [Github actions](https://github.com/features/actions), hosted on [Digital Ocean](https://digitalocean.com), managed by [PM2](https://pm2.keymetrics.io/).
