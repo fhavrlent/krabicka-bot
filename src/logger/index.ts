@@ -10,8 +10,8 @@ export const logFormat = printf(({ level, message, timestamp }) => {
 });
 
 const logger = createLogger({
-  level: 'info',
   format: combine(timestamp(), logFormat),
+  level: 'info',
   transports: [
     new transports.File({
       dirname: `${__dirname}/../logs`,
@@ -31,11 +31,11 @@ if (config.nodeEnv !== 'production') {
 if (config.nodeEnv === 'production') {
   logger.add(
     new Sentry({
+      level: 'warn',
       sentry: {
         dsn: config.sentryDsn,
         environment: config.nodeEnv,
       },
-      level: 'warn',
     }),
   );
 }
