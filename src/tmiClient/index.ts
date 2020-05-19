@@ -1,18 +1,20 @@
-import config from '../config';
 import { client } from 'tmi.js';
+
+import config from '../config';
 import logger from '../logger';
 
 export default () => {
   const tmiOptions = {
-    identity: {
-      username: config.botUsername,
-      password: config.botPassword,
-    },
     channels: [config.channelName],
     connection: {
       reconnect: true,
       secure: true,
     },
+    identity: {
+      password: config.botPassword,
+      username: config.botUsername,
+    },
+
     options: { debug: config.nodeEnv === 'development' },
   };
 

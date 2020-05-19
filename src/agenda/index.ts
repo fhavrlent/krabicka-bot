@@ -1,7 +1,7 @@
 import Agenda from 'agenda';
 
-import { getIsOnline } from '../helpers';
 import config from '../config';
+import { getIsOnline } from '../helpers';
 import logger from '../logger';
 
 export default (tmiClientInstance) => {
@@ -14,6 +14,7 @@ export default (tmiClientInstance) => {
       if (!isOnline) {
         logger.info('Channel is offline, will try again in 1 hour');
         done();
+
         return;
       }
       tmiClientInstance.say(config.channelName, '!krabicka');
