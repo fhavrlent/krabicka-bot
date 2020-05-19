@@ -4,13 +4,14 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "start": "nodemon",
-    "postbuild": "cp package.json dist/package.json",
     "build": "npm run lint && tsc",
-    "test": "jest",
+    "lint:ci": "eslint '*/**/*.{js,ts,tsx}' --quiet",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "postbuild": "cp package.json dist/package.json",
+    "prettier": "prettier --write .",
+    "start": "nodemon",
     "test:coverage": "jest --collect-coverage",
-    "prettier": "prettier --write ."
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
