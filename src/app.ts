@@ -1,6 +1,6 @@
-import tmiClient from './tmiClient';
 import agenda from './agenda';
 import logger from './logger';
+import tmiClient from './tmiClient';
 
 const startServer = async () => {
   try {
