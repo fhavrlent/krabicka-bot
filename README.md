@@ -6,7 +6,7 @@
 
 ## More badges
 
-![GitHub](https://img.shields.io/github/license/fhavrlent/krabicka) ![GitHub repo size](https://img.shields.io/github/repo-size/fhavrlent/krabicka) ![GitHub package.json version](https://img.shields.io/github/package-json/v/fhavrlent/krabicka)
+![GitHub](https://img.shields.io/github/license/fhavrlent/krabicka) ![GitHub repo size](https://img.shields.io/github/repo-size/fhavrlent/krabicka) ![GitHub package.json version](https://img.shields.io/github/package-json/v/fhavrlent/krabicka) [![Maintainability](https://api.codeclimate.com/v1/badges/09117691334146af2e52/maintainability)](https://codeclimate.com/github/fhavrlent/krabicka-bot/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/09117691334146af2e52/test_coverage)](https://codeclimate.com/github/fhavrlent/krabicka-bot/test_coverage)
 
 ## Project 📈
 
