@@ -16,5 +16,5 @@
   "lib": ["es2017", "esnext.asynciterable"],
   "target": "es2017",
   "include": ["./src/**/*"],
-  "exclude": ["node_modules", "tests"]
+  "exclude": ["node_modules", "**/*.test.ts"]
 }
