@@ -1,8 +1,8 @@
-name: Pul Request test and build check
+name: Pull Request test and build check
 
 on:
-  pull_request:
-    branches: [master, develop]
+  push:
+    branches: [master]
 
 jobs:
   build:
